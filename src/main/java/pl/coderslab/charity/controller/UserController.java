@@ -25,6 +25,7 @@ public class UserController {
     @GetMapping("/add/user")
     public String addUser(Model model){
         model.addAttribute("user", new User());
+        System.out.println("dupa");
         return "addUserForm";
     }
     @PostMapping("/add/user")
