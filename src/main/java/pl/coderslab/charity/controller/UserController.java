@@ -25,11 +25,11 @@ public class UserController {
     @GetMapping("/add/user")
     public String addUser(Model model){
         model.addAttribute("user", new User());
-        System.out.println("dupa");
         return "addUserForm";
     }
     @PostMapping("/add/user")
     public String addUserPost(@Valid User user, BindingResult result){
+
         if(result.hasErrors()){
             return "addUserForm";
         }
@@ -41,13 +41,18 @@ public class UserController {
     public String login(){
         return "loginForm";
     }
+
     @PostMapping("/login")
     public String loginPost(@Param("email") String email, @Param("password") String password, HttpServletRequest req){
         HttpSession session = req.getSession();
         User user = userRepository.findByEmail(email);
-        if(user.getPassword().equals(password)){
-            session.setAttribute("user", user);
-            return "redirect:/";
+
+        if(user != null) {
+
+            if (user.getPassword().equals(password)) {
+                session.setAttribute("user", user);
+                return "redirect:/add/donation";
+            }
         }
 
         return "redirect:/login";

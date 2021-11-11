@@ -127,6 +127,32 @@ document.addEventListener("DOMContentLoaded", function() {
           e.preventDefault();
           this.currentStep++;
           this.updateForm();
+
+          let inputCity = document.getElementById("cityId").value;
+          let inputStreet = document.getElementById("streetId").value;
+          let inputCode = document.getElementById("codeId").value;
+          let inputDate = document.getElementById("pickUpDateId").value;
+          let inputTime = document.getElementById("pickUpTimeId").value;
+          let inputComment = document.getElementById("comment").value;
+          // let inputQuantity = document.getElementById("quantityId").value;
+          $("#summaryQuantity").html($("#quantityId").val());
+
+          let inputInstitution = $('input[name="institution"]:checked').attr("institutionName");
+
+
+
+
+          document.getElementById("summaryStreet").innerHTML = inputStreet;
+          document.getElementById("summaryCity").innerHTML = inputCity;
+          document.getElementById("summaryCode").innerHTML = inputCode;
+          document.getElementById("summaryDate").innerHTML = inputDate;
+          document.getElementById("summaryTime").innerHTML = inputTime;
+          document.getElementById("summaryComment").innerHTML = inputComment;
+          // document.getElementById("summaryQuantity").innerHTML = inputQuantity;
+          document.getElementById("summaryInstitution").innerHTML = inputInstitution;
+
+
+
         });
       });
 
@@ -171,4 +197,10 @@ document.addEventListener("DOMContentLoaded", function() {
   if (form !== null) {
     new FormSteps(form);
   }
+
+
+
+
+
+
 });

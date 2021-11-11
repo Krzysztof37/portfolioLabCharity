@@ -23,7 +23,7 @@ public class Donation {
     @NotNull(message = "Podaj ilość worków")
     Integer quantity;
     @NotNull(message = "Podaj kategorię")
-    @OneToMany
+    @ManyToMany
     List<Category> category;
     @NotNull(message = "Wybierz instytucję")
     @ManyToOne

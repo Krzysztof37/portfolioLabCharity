@@ -29,6 +29,8 @@ public class User {
     @NotBlank(message = "Pole hasło nie może być puste")
     @Size(min = 8, message = "Hasło powinno mieć conajmniej 8 znaków")
     private String password;
+    @Column(columnDefinition = "integer default 0")
+    private Integer admin;
 
 
 }
