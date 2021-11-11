@@ -51,6 +51,7 @@ public class UserController {
 
             if (user.getPassword().equals(password)) {
                 session.setAttribute("user", user);
+
                 return "redirect:/add/donation";
             }
         }

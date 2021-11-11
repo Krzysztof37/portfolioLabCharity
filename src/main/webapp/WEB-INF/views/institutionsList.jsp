@@ -31,8 +31,10 @@
     </nav>
 </header>
 
+<c:if test="${user.admin == 1}">
 <section class="login-page">
     <h2>Lista organizacji:</h2>
+
     <ul>
     <c:forEach items="${institutionsList}" var="inst">
         <li style="font-size: 20px">${inst.name} <a href="/institution/delete/${inst.id}">Usuń</a> </li>
@@ -41,7 +43,10 @@
 
     </c:forEach>
     </ul>
+
 </section>
+
+
 
 <section class="login-page">
 <h2>Dodaj instytucję</h2>
@@ -60,7 +65,7 @@
         </div>
     </form>
 </section>
-
+</c:if>
 
 <footer>
     <div class="contact">

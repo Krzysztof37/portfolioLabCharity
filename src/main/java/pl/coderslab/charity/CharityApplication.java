@@ -14,7 +14,7 @@ public class CharityApplication {
         AuthFilter authFilter = new AuthFilter();
 
         registrationBean.setFilter(authFilter);
-        registrationBean.addUrlPatterns("/add/donation","/institution/*");
+        registrationBean.addUrlPatterns("/add/donation");
         return registrationBean;
     }
 
