@@ -35,7 +35,9 @@ public class Donation {
     @NotBlank(message = "Podaj kod pocztowy")
     String zipCode;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Podaj datę")
     LocalDate pickUpDate;
+    @NotNull(message = "Podaj godzinę")
     LocalTime pickUpTime;
     String pickUpComment;
 

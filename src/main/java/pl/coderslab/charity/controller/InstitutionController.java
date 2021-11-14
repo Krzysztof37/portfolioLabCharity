@@ -11,6 +11,7 @@ import pl.coderslab.charity.utils.InstitutionRepository;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class InstitutionController {
@@ -37,10 +38,11 @@ public class InstitutionController {
     }
 
     @PostMapping("/institution/add")
-    public String institutionAdd(@Valid Institution institution, BindingResult result){
+    public String institutionAdd(@Valid Institution institution, BindingResult result, Model model){
 
         if(result.hasErrors()){
-            return "redirect:/institution/list";
+            model.addAttribute("errorsInstitution", result.getFieldErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList()));
+            return "institutionsList";
         }
         institutionRepository.save(institution);
         return "redirect:/institution/list";

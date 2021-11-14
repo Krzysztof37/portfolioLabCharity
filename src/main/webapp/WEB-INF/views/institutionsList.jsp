@@ -17,8 +17,9 @@
 <header>
     <nav class="container container--70">
         <ul class="nav--actions">
-            <li><a href="/login">Zaloguj</a></li>
-            <li class="highlighted"><a href="#">Załóż konto</a></li>
+            <c:if test="${user.name != null }">
+                <li><a href="/logout" class="btn btn--small btn--without-border">Wyloguj</a></li>
+            </c:if>
         </ul>
 
         <ul>
@@ -52,12 +53,12 @@
 <h2>Dodaj instytucję</h2>
 
     <form method="post" action="/institution/add">
-
+        <p style="font-size: larger">${errorsInstitution}</p>
         <div class="form-group">
-            <input name="name" placeholder="Nazwa Instytucji"/>
+            <input name="name" placeholder="Nazwa Instytucji" required/>
         </div>
         <div class="form-group">
-            <textarea name="description" placeholder="Opis Instytucji"></textarea>
+            <textarea name="description" placeholder="Opis Instytucji" required></textarea>
         </div>
 
         <div class="form-group form-group--buttons">

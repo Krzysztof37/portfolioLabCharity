@@ -24,9 +24,7 @@
           <li class="logged-user">
             Witaj ${user.name}
             <ul class="dropdown">
-              <li><a href="#">Profil</a></li>
-              <li><a href="#">Moje zbiórki</a></li>
-              <li><a href="#">Wyloguj</a></li>
+              <li><a href="/logout">Wyloguj</a></li>
             </ul>
           </li>
         </ul>
@@ -95,7 +93,7 @@
           <!-- STEP 1: class .active is switching steps -->
           <div data-step="1" class="active">
             <h3>Zaznacz co chcesz oddać:</h3>
-            <p>${errors}</p>
+            <p style="font-size: larger">${errors}</p>
             <c:forEach items="${categories}" var="cat">
 
               <div class="form-group form-group--checkbox">

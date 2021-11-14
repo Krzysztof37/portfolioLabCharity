@@ -1,4 +1,4 @@
-package pl.coderslab.charity;
+package pl.coderslab.charity.filter;
 
 
 import javax.servlet.*;

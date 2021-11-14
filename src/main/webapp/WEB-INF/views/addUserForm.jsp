@@ -37,19 +37,19 @@
       <form:form modelAttribute="user" method="post" action="/add/user">
 
       <div class="form-group">
-        <form:input path="name" placeholder="Imię"/>
+        <form:input path="name" placeholder="Imię" />
       </div>
           <div class="form-group">
-        <form:input path="surName" placeholder="Nazwisko"/>
+        <form:input path="surName" placeholder="Nazwisko"  />
           </div>
       <div class="form-group">
-        <form:input path="email" placeholder="Email"/>
+        <form:input path="email" placeholder="Email" />
       </div>
           <div class="form-group">
-        <form:input path="password" placeholder="Hasło"/>
+        <form:input path="password" placeholder="Hasło"  />
           </div>
 
-      <form:errors path="*"/>
+      <form:errors path="*" cssStyle="font-size: larger"/>
 
       <div class="form-group form-group--buttons">
           <a href="/login" class="btn btn--without-border">Zaloguj się</a>

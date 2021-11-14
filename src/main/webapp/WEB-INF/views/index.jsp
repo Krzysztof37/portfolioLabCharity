@@ -18,6 +18,9 @@
         <ul class="nav--actions">
             <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
             <li><a href="/add/user" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <c:if test="${user.name != null}">
+            <li><a href="/logout" class="btn btn--small btn--without-border">Wyloguj</a></li>
+            </c:if>
         </ul>
 
         <ul>
