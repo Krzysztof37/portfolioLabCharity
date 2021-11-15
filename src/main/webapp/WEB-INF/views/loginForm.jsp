@@ -32,12 +32,12 @@
 
     <section class="login-page">
       <h2>Zaloguj się</h2>
-      <form action="/login" method="post">
+      <form method="post" action="/login">
         <div class="form-group">
-          <input type="email" name="email" placeholder="Email" required />
+          <input type="text" name="username"/>
         </div>
         <div class="form-group">
-          <input type="password" name="password" placeholder="Hasło" required/>
+          <input type="password" name="password"/>
 
         </div>
 
@@ -45,6 +45,7 @@
           <a href="/add/user" class="btn btn--without-border">Załóż konto</a>
           <button class="btn" type="submit">Zaloguj się</button> 
         </div>
+
       </form>
     </section>
 

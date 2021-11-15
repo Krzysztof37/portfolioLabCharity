@@ -31,7 +31,7 @@
             <li><a href="#aboutUs" class="btn btn--without-border">O nas</a></li>
             <li><a href="#organizations" class="btn btn--without-border">Fundacje i organizacje</a></li>
             <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
-            <c:if test="${user.admin == 1}"><li><a href="/institution/list" class="btn btn--without-border">Panel Sterowania admina</a></li></c:if>
+           <li><a href="/institution/list" class="btn btn--without-border">Panel Sterowania admina</a></li>
         </ul>
     </nav>
 
@@ -99,9 +99,9 @@
         <h2>O nas</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
             optio esse quisquam illo omnis.</p>
-        <img src="<c:url value="resources/images/signature.svg"/>" class="about-us--text-signature" alt="Signature"/>
+        <img src="<c:url value="../../resources/images/signature.svg"/>" class="about-us--text-signature" alt="Signature"/>
     </div>
-    <div class="about-us--image"><img src="<c:url value="resources/images/about-us.jpg"/>" alt="People in circle"/>
+    <div class="about-us--image"><img src="<c:url value="../../resources/images/about-us.jpg"/>" alt="People in circle"/>
     </div>
 </section>
 
@@ -162,6 +162,6 @@
     </div>
 </footer>
 
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="<c:url value="../../resources/js/app.js"/>"></script>
 </body>
 </html>

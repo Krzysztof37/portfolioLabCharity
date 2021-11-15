@@ -43,7 +43,7 @@
         <form:input path="surName" placeholder="Nazwisko"  />
           </div>
       <div class="form-group">
-        <form:input path="email" placeholder="Email" />
+        <form:input path="username" placeholder="Email" />
       </div>
           <div class="form-group">
         <form:input path="password" placeholder="Hasło"  />

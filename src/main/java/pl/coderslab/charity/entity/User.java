@@ -26,12 +26,10 @@ public class User {
     @Size(max = 70, message = "Zbyt wiele znaków")
     @Pattern(regexp = "([A-Za-z0-9\\W_]+[A-Za-z0-9\\W_]*)@([A-Za-z0-9]+)\\.([a-zA-Z0-9]+)", message = "Nieprawidłowy adres email")
     @Column(unique = true)
-    private String email;
+    private String username;
     @NotBlank(message = "Pole hasło nie może być puste")
     @Size(min = 8, message = "Hasło powinno mieć conajmniej 8 znaków")
     private String password;
-    @Column(columnDefinition = "integer default 0")
-    private Integer admin;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;
 
