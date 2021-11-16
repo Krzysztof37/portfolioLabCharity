@@ -64,14 +64,14 @@ public class UserController {
 //        return "redirect:/login";
 //    }
 
-    @GetMapping("/logout")
-    public String logout(HttpServletRequest req){
-        HttpSession session = req.getSession();
-        if(session.getAttribute("user") != null){
-            session.invalidate();
-        }
-        return "redirect:/";
-    }
+//    @GetMapping("/logout")
+//    public String logout(HttpServletRequest req){
+//        HttpSession session = req.getSession();
+//        if(session.getAttribute("user") != null){
+//            session.invalidate();
+//        }
+//        return "redirect:/";
+//    }
 
 
 }
