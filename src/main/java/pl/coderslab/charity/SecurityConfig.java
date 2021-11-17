@@ -1,18 +1,16 @@
 package pl.coderslab.charity;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import pl.coderslab.charity.utils.SpringDataUserDetailsService;
-
-import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
@@ -28,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
+//
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication()
@@ -36,11 +34,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
 
 
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-
-                .userDetailsService(customUserDetailsService())
+        auth.userDetailsService(customUserDetailsService())
                 .passwordEncoder(passwordEncoder());
     }
 
@@ -48,22 +45,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-//        http.authorizeRequests()
-//                    .antMatchers("/add/donation").hasAnyRole("USER","ADMIN")
-//                    .and().formLogin().loginPage("/login")
-//                    .and()
-//                    .csrf()
-//                    .disable();
+        http.authorizeRequests()
+                    .antMatchers("/add/donation").hasAnyRole("USER")
+                    .and().csrf().disable()
+                    .formLogin().loginPage("/login");
 
 
-        http.
-                authorizeRequests()
-                .antMatchers("/add/donation").hasAuthority("USER")
-                .and().csrf().disable().formLogin()
-                .loginPage("/login").failureUrl("/login?error=true")
-                .defaultSuccessUrl("/")
-                .usernameParameter("username")
-                .passwordParameter("password");
+
+
+
+
+
+
+
+//
+//        http.
+//                authorizeRequests()
+//                .antMatchers("/add/donation").hasAuthority("USER")
+//                .and().formLogin()
+//                .loginPage("/login");
+
+
 
 
     }

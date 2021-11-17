@@ -23,7 +23,7 @@ private static RoleRepository roleRepository;
 
 
     public User addRoleToUser(User user){
-        Role role = roleRepository.findByName("USER");
+        Role role = roleRepository.findByName("ROLE_USER");
         user.setRoles(new HashSet<Role>(Arrays.asList(role)));
 
         return user;
