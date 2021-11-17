@@ -24,12 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-//
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("user1").password("{noop}user123").roles("USER");
-//    }
 
 
 
@@ -44,7 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                    .antMatchers("/add/donation").hasAnyRole("USER")
+                    .antMatchers("/add/donation").hasAnyRole("USER","ADMIN")
+                    .antMatchers("/institution/list").hasRole("ADMIN")
                     .and().csrf().disable()
                     .formLogin().loginPage("/login");
 
@@ -52,23 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-
-
-
-
-//
-//        http.
-//                authorizeRequests()
-//                .antMatchers("/add/donation").hasAuthority("USER")
-//                .and().formLogin()
-//                .loginPage("/login");
-
-
-
-
     }
-
-
 
 
 

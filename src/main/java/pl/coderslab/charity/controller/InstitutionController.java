@@ -1,5 +1,6 @@
 package pl.coderslab.charity.controller;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
+@Secured("ROLE_ADMIN")
 public class InstitutionController {
 
     private final InstitutionRepository institutionRepository;
@@ -21,6 +23,7 @@ public class InstitutionController {
     public InstitutionController(InstitutionRepository institutionRepository) {
     this.institutionRepository = institutionRepository;
     }
+
 
     @GetMapping("/institution/list")
     public String getInstitutionsList(Model model){

@@ -36,12 +36,12 @@
 
       <form:form modelAttribute="user" method="post" action="/add/user">
 
-<%--      <div class="form-group">--%>
-<%--        <form:input path="name" placeholder="Imię" />--%>
-<%--      </div>--%>
-<%--          <div class="form-group">--%>
-<%--        <form:input path="surName" placeholder="Nazwisko"  />--%>
-<%--          </div>--%>
+      <div class="form-group">
+        <form:input path="name" placeholder="Imię" />
+      </div>
+          <div class="form-group">
+        <form:input path="surName" placeholder="Nazwisko"  />
+          </div>
       <div class="form-group">
         <form:input path="username" placeholder="Email" />
       </div>
