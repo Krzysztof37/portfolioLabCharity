@@ -1,6 +1,6 @@
 package pl.coderslab.charity.controller;
 
-import org.springframework.data.repository.query.Param;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,19 +10,19 @@ import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.utils.UserRepository;
 import pl.coderslab.charity.utils.UserService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
 public class UserController {
 
-    private static UserRepository userRepository;
-    private static UserService userService;
+    private final UserRepository userRepository;
+    private final UserService userService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserController(UserRepository userRepository, UserService userService) {
+    public UserController(UserRepository userRepository, UserService userService, BCryptPasswordEncoder passwordEncoder) {
     this.userRepository = userRepository;
     this.userService = userService;
+    this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/add/user")
@@ -37,7 +37,9 @@ public class UserController {
         if(result.hasErrors()){
             return "addUserForm";
         }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User userWithRole = userService.addRoleToUser(user);
+
         userRepository.save(userWithRole);
         return "redirect:/";
     }

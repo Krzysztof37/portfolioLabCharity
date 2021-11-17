@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Controller
 public class InstitutionController {
 
-    private static InstitutionRepository institutionRepository;
+    private final InstitutionRepository institutionRepository;
 
     public InstitutionController(InstitutionRepository institutionRepository) {
     this.institutionRepository = institutionRepository;

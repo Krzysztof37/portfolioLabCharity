@@ -26,10 +26,10 @@ import java.util.stream.Collectors;
 @Controller
 public class DonationController {
 
-    private static CategoryRepository categoryRepository;
-    private static InstitutionRepository institutionRepository;
-    private static DonationRepository donationRepository;
-    private static UserRepository userRepository;
+    private final CategoryRepository categoryRepository;
+    private final InstitutionRepository institutionRepository;
+    private final DonationRepository donationRepository;
+    private final UserRepository userRepository;
 
     public DonationController(CategoryRepository categoryRepository, InstitutionRepository institutionRepository,DonationRepository donationRepository, UserRepository userRepository) {
     this.categoryRepository = categoryRepository;
