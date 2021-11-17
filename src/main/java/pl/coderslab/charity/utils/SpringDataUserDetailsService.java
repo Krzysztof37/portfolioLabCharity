@@ -8,25 +8,27 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
 
-import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Service
 public class SpringDataUserDetailsService implements UserDetailsService {
 
+
+    private UserService userService;
+
     @Autowired
-    private static UserRepository userRepository;
+    public void setUserRepository(UserService userService) {
+        this.userService = userService;
+    }
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = userService.findByUserName(username);
+
         if (user == null)
 
         {throw new UsernameNotFoundException(username);

@@ -12,8 +12,8 @@ import java.util.HashSet;
 public class UserService {
 
 
-private static UserRepository userRepository;
-private static RoleRepository roleRepository;
+private final UserRepository userRepository;
+private final RoleRepository roleRepository;
 
     public UserService(UserRepository userRepository, RoleRepository roleRepository ) {
         this.userRepository = userRepository;
@@ -21,6 +21,9 @@ private static RoleRepository roleRepository;
 
     }
 
+    public User findByUserName(String username){
+        return userRepository.findByUsername(username);
+    }
 
     public User addRoleToUser(User user){
         Role role = roleRepository.findByName("ROLE_USER");
