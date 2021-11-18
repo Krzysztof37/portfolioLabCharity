@@ -3,6 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
 
 <!DOCTYPE html>
 <html lang="pl">
@@ -17,9 +19,12 @@
 <header>
     <nav class="container container--70">
         <ul class="nav--actions">
-            <c:if test="${user.name != null }">
-                <li><a href="/logout" class="btn btn--small btn--without-border">Wyloguj</a></li>
-            </c:if>
+            <sec:authorize access="isAuthenticated()">
+                <form action="<c:url value='/logout'/>">
+                    <li><button class="btn btn--small btn--without-border" type="submit">Wyloguj</button></li>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+            </sec:authorize>
         </ul>
 
         <ul>
@@ -32,12 +37,12 @@
     </nav>
 </header>
 
-<c:if test="${user.admin == 1}">
+<sec:authorize access="isAuthenticated()">
 <section class="login-page">
     <h2>Lista organizacji:</h2>
 
     <ul>
-    <c:forEach items="${institutionsList}" var="inst">
+    <c:forEach items="${institutionsList.pageList}" var="inst">
         <li style="font-size: 20px">${inst.name} <a href="/institution/delete/${inst.id}">Usuń</a> </li>
 
 
@@ -45,6 +50,8 @@
     </c:forEach>
     </ul>
 
+    <tg:paging pagedListHolder="${pagedListHolder}"
+               pagedLink="${pagedLink}"/>
 </section>
 
 
@@ -66,7 +73,7 @@
         </div>
     </form>
 </section>
-</c:if>
+</sec:authorize>
 
 <footer>
     <div class="contact">

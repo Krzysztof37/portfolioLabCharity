@@ -39,32 +39,11 @@ public class SpringDataUserDetailsService implements UserDetailsService {
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
         user.getRoles().forEach(r ->
                 grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(), user.getPassword(), grantedAuthorities);
+        return new CurrentUser(user.getUsername(),user.getPassword(),
+                grantedAuthorities, user);
     }
 
 
-//    @Override
-//    @Transactional
-//    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-//        User user = userRepository.findByUsername(userName);
-//        List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
-//        return buildUserForAuthentication(user, authorities);
-//    }
-//
-//    private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
-//        Set<GrantedAuthority> roles = new HashSet<GrantedAuthority>();
-//        for (Role role : userRoles) {
-//            roles.add(new SimpleGrantedAuthority(role.getName()));
-//        }
-//        List<GrantedAuthority> grantedAuthorities = new ArrayList<>(roles);
-//        return grantedAuthorities;
-//    }
-//
-//    private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
-//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
-//                authorities);
-//    }
 
 
 

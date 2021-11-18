@@ -1,5 +1,7 @@
 package pl.coderslab.charity.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,10 +12,7 @@ import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.User;
-import pl.coderslab.charity.utils.CategoryRepository;
-import pl.coderslab.charity.utils.DonationRepository;
-import pl.coderslab.charity.utils.InstitutionRepository;
-import pl.coderslab.charity.utils.UserRepository;
+import pl.coderslab.charity.utils.*;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,11 +39,8 @@ public class DonationController {
 
 
     @GetMapping("/add/donation")
-    public String addDonation(Model model, HttpServletRequest httpServletRequest){
-        HttpSession session = httpServletRequest.getSession();
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user",user);
-
+    public String addDonation(Model model, @AuthenticationPrincipal CurrentUser currentUser) {
+        model.addAttribute("user", currentUser.getUser());
         return "addDonationForm";
     }
     @PostMapping("/add/donation")

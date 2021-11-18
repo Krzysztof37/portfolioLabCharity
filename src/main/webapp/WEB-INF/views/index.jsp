@@ -20,9 +20,12 @@
         <ul class="nav--actions">
             <li><a href="/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
             <li><a href="/add/user" class="btn btn--small btn--highlighted">Załóż konto</a></li>
-            <c:if test="${user.name != null}">
-            <li><a href="/logout" class="btn btn--small btn--without-border">Wyloguj</a></li>
-            </c:if>
+           <sec:authorize access="isAuthenticated()">
+                <form action="<c:url value='/logout'/>">
+            <li><button class="btn btn--small btn--without-border" type="submit">Wyloguj</button></li>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+           </sec:authorize>
         </ul>
 
         <ul>
@@ -31,7 +34,9 @@
             <li><a href="#aboutUs" class="btn btn--without-border">O nas</a></li>
             <li><a href="#organizations" class="btn btn--without-border">Fundacje i organizacje</a></li>
             <li><a href="#contact" class="btn btn--without-border">Kontakt</a></li>
+            <sec:authorize access="hasRole('ADMIN')">
            <li><a href="/institution/list" class="btn btn--without-border">Panel Sterowania admina</a></li>
+            </sec:authorize>
         </ul>
     </nav>
 

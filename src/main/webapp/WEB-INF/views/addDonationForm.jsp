@@ -3,8 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 <!DOCTYPE html>
@@ -24,7 +23,12 @@
           <li class="logged-user">
             Witaj ${user.name}
             <ul class="dropdown">
-              <li><a href="/logout">Wyloguj</a></li>
+              <sec:authorize access="isAuthenticated()">
+                <form action="<c:url value='/logout'/>">
+                  <li><button class="btn btn--small btn--without-border" type="submit">Wyloguj</button></li>
+                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+              </sec:authorize>
             </ul>
           </li>
         </ul>

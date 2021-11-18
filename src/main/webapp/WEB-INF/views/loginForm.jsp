@@ -35,10 +35,10 @@
       <form method="post">
 
         <div class="form-group">
-          <input type="text" name="username"/>
+          <input type="text" name="username" placeholder="email"/>
         </div>
         <div class="form-group">
-          <input type="password" name="password"/>
+          <input type="password" name="password" placeholder="hasło"/>
 
         </div>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
