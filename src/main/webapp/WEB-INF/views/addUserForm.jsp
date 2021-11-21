@@ -43,13 +43,13 @@
         <form:input path="surName" placeholder="Nazwisko"  />
           </div>
       <div class="form-group">
-        <form:input path="username" placeholder="Email" />
+        <form:input path="username" placeholder="Email"  /> <form:errors path="username" cssStyle="font-size: larger"/>
       </div>
           <div class="form-group">
-        <form:input path="password" placeholder="Hasło"  />
+        <form:input path="password" placeholder="Hasło"  /> <form:errors path="password" cssStyle="font-size: larger"/>
           </div>
 
-      <form:errors path="*" cssStyle="font-size: larger"/>
+
 
       <div class="form-group form-group--buttons">
           <a href="/login" class="btn btn--without-border">Zaloguj się</a>
@@ -62,7 +62,7 @@
       <div class="contact">
         <h2>Skontaktuj się z nami</h2>
         <h3>Formularz kontaktowy</h3>
-        <form>
+        <form action="/sendEmail" method="post">
           <div class="form-group form-group--50">
             <input type="text" name="name" placeholder="Imię" />
           </div>

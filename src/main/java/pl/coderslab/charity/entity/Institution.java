@@ -20,8 +20,10 @@ public class Institution {
     @NotBlank
     private String description;
 
-
-
+    @Override
+    public String toString() {
+        return "instytucja: "+name+" opis: "+description;
+    }
 }
 
 

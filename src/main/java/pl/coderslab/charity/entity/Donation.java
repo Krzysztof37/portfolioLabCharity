@@ -40,7 +40,8 @@ public class Donation {
     @NotNull(message = "Podaj godzinę")
     LocalTime pickUpTime;
     String pickUpComment;
-
+    @Column(columnDefinition = "integer default 0")
+    Integer received;
 
 
 

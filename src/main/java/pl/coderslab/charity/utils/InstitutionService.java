@@ -3,6 +3,7 @@ package pl.coderslab.charity.utils;
 
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.utils.repository.InstitutionRepository;
 
 @Service
 public class InstitutionService {

@@ -4,6 +4,8 @@ package pl.coderslab.charity.utils;
 import org.springframework.stereotype.Service;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.utils.repository.RoleRepository;
+import pl.coderslab.charity.utils.repository.UserRepository;
 
 import java.util.Arrays;
 import java.util.HashSet;

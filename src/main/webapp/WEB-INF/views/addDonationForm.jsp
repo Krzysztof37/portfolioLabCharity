@@ -277,7 +277,7 @@
       <div class="contact">
         <h2>Skontaktuj się z nami</h2>
         <h3>Formularz kontaktowy</h3>
-        <form class="form--contact">
+        <form class="form--contact" action="/sendEmail" method="post">
           <div class="form-group form-group--50">
             <input type="text" name="name" placeholder="Imię" />
           </div>

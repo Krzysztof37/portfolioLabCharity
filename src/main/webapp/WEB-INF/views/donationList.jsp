@@ -41,41 +41,34 @@
 
 <sec:authorize access="isAuthenticated()">
 
-<section class="login-page">
-    <h2>Lista organizacji:</h2>
-
-
+    <section class="login-page">
+    <h3>Dary oczekujące na dostarczenie</h3>
     <ul>
-    <c:forEach items="${institutionsList.content}" var="inst">
-        <li style="font-size: 20px">${inst.name} <a href="/institution/delete/${inst.id}">Usuń</a> </li>
+
+<c:forEach items="${donationList.content}" var="donation">
+
+    <c:if test="${donation.received == 0}">
+
+    <li style="font-size: 20px"> ${donation.institution} ${donation.city} ${donation.street} ${donation.pickUpDate} ${donation.pickUpTime}
+        <a href="/donation/delete/${donation.id}">Usuń</a> <a href="/donation/archive/${donation.id}">Archiwizuj</a></li>
+
+    </c:if>
+
+</c:forEach>
 
 
-    </c:forEach>
     </ul>
 
-    <util:pagination thispage="${institutionsList}"></util:pagination>
-</section>
+        <util:pagination thispage="${donationList}"></util:pagination>
+
+    </section>
 
 
 
-<section class="login-page">
-<h2>Dodaj instytucję</h2>
-
-    <form method="post" action="/institution/add">
-        <p style="font-size: larger">${errorsInstitution}</p>
-        <div class="form-group">
-            <input name="name" placeholder="Nazwa Instytucji" required/>
-        </div>
-        <div class="form-group">
-            <textarea name="description" placeholder="Opis Instytucji" required></textarea>
-        </div>
-
-        <div class="form-group form-group--buttons">
-            <button class="btn" type="submit">Dodaj instytucję</button>
-        </div>
-    </form>
-</section>
 </sec:authorize>
+
+
+
 
 <footer>
     <div class="contact">

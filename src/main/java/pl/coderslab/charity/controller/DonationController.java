@@ -1,23 +1,25 @@
 package pl.coderslab.charity.controller;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
-import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.utils.*;
+import pl.coderslab.charity.utils.repository.CategoryRepository;
+import pl.coderslab.charity.utils.repository.DonationRepository;
+import pl.coderslab.charity.utils.repository.InstitutionRepository;
+import pl.coderslab.charity.utils.repository.UserRepository;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +38,40 @@ public class DonationController {
     this.donationRepository = donationRepository;
     this.userRepository = userRepository;
     }
+
+
+    @GetMapping("/donation/list")
+    public String donationList (Model model, Pageable pageable){
+
+        Page<Donation> donationList = donationRepository.findAll(pageable);
+        model.addAttribute("donationList", donationList);
+
+        return "donationList";
+    }
+
+    @GetMapping("/donation/archive/list")
+    public String donationArchiveList(Model model, Pageable pageable){
+
+        Page<Donation> donationArchiveList = donationRepository.findAll(pageable);
+        model.addAttribute("donationArchiveList", donationArchiveList);
+
+        return "donationArchiveList";
+    }
+
+    @GetMapping("/donation/delete/{id}")
+    public String donationDelete (@PathVariable Long id){
+        donationRepository.deleteById(id);
+        return "redirect:/donation/list";
+    }
+
+
+
+    @GetMapping("/donation/archive/{id}")
+    public String donationArchive(@PathVariable Long id){
+        donationRepository.archiveDonation(id);
+        return "redirect:/donation/list";
+    }
+
 
 
     @GetMapping("/add/donation")

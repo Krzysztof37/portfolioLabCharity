@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.entity.User;
-import pl.coderslab.charity.utils.UserRepository;
+import pl.coderslab.charity.utils.repository.UserRepository;
 import pl.coderslab.charity.utils.UserService;
 
 import javax.validation.Valid;
