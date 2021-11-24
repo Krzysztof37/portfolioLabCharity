@@ -25,11 +25,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(customUserDetailsService())
+        auth.userDetailsService(customUserDetailsService())
                 .passwordEncoder(passwordEncoder());
     }
 
@@ -38,18 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                    .antMatchers("/add/donation").hasAnyRole("USER","ADMIN")
-                    .antMatchers("/institution/list").hasRole("ADMIN")
-                    .antMatchers("/donation/**").hasRole("ADMIN")
-                    .and().csrf().disable()
-                    .formLogin().loginPage("/login");
-
-
-
+                .antMatchers("/add/donation").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/institution/list").hasRole("ADMIN")
+                .antMatchers("/donation/**").hasRole("ADMIN")
+                .and().csrf().disable()
+                .formLogin().loginPage("/login");
 
 
     }
-
 
 
 }

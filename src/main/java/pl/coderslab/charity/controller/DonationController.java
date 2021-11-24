@@ -32,46 +32,44 @@ public class DonationController {
     private final DonationRepository donationRepository;
     private final UserRepository userRepository;
 
-    public DonationController(CategoryRepository categoryRepository, InstitutionRepository institutionRepository,DonationRepository donationRepository, UserRepository userRepository) {
-    this.categoryRepository = categoryRepository;
-    this.institutionRepository = institutionRepository;
-    this.donationRepository = donationRepository;
-    this.userRepository = userRepository;
+    public DonationController(CategoryRepository categoryRepository, InstitutionRepository institutionRepository, DonationRepository donationRepository, UserRepository userRepository) {
+        this.categoryRepository = categoryRepository;
+        this.institutionRepository = institutionRepository;
+        this.donationRepository = donationRepository;
+        this.userRepository = userRepository;
     }
 
 
     @GetMapping("/donation/list")
-    public String donationList (Model model, Pageable pageable){
+    public String donationList(Model model, Pageable pageable) {
 
-        Page<Donation> donationList = donationRepository.findAll(pageable);
+        Page<Donation> donationList = donationRepository.findAllByReceived(0, pageable);
         model.addAttribute("donationList", donationList);
 
         return "donationList";
     }
 
     @GetMapping("/donation/archive/list")
-    public String donationArchiveList(Model model, Pageable pageable){
+    public String donationArchiveList(Model model, Pageable pageable) {
 
-        Page<Donation> donationArchiveList = donationRepository.findAll(pageable);
+        Page<Donation> donationArchiveList = donationRepository.findAllByReceived(1, pageable);
         model.addAttribute("donationArchiveList", donationArchiveList);
 
         return "donationArchiveList";
     }
 
     @GetMapping("/donation/delete/{id}")
-    public String donationDelete (@PathVariable Long id){
+    public String donationDelete(@PathVariable Long id) {
         donationRepository.deleteById(id);
         return "redirect:/donation/list";
     }
 
 
-
     @GetMapping("/donation/archive/{id}")
-    public String donationArchive(@PathVariable Long id){
+    public String donationArchive(@PathVariable Long id) {
         donationRepository.archiveDonation(id);
         return "redirect:/donation/list";
     }
-
 
 
     @GetMapping("/add/donation")
@@ -79,25 +77,27 @@ public class DonationController {
         model.addAttribute("user", currentUser.getUser());
         return "addDonationForm";
     }
+
     @PostMapping("/add/donation")
-    public String addDonationPost(@Valid Donation donation, BindingResult result, Model model){
-        System.out.println(donation.getCategory()+" "+donation.getInstitution()+" "+donation.getPickUpDate()+" "+donation.getPickUpTime());
-        if(result.hasErrors()){
-            model.addAttribute("error","podano nieprawidłowe dane, spróbuj jeszcze raz");
+    public String addDonationPost(@Valid Donation donation, BindingResult result, Model model) {
+        System.out.println(donation.getCategory() + " " + donation.getInstitution() + " " + donation.getPickUpDate() + " " + donation.getPickUpTime());
+        if (result.hasErrors()) {
+            model.addAttribute("error", "podano nieprawidłowe dane, spróbuj jeszcze raz");
             model.addAttribute("errors", result.getFieldErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList()));
             return "addDonationForm";
         }
+        donation.setReceived(0);
         donationRepository.save(donation);
         return "redirect:/";
     }
 
     @ModelAttribute("categories")
-    public List<Category> getCategory (){
+    public List<Category> getCategory() {
         return categoryRepository.findAll();
     }
 
     @ModelAttribute("institutions")
-    public List<Institution> getInstitutions(){
+    public List<Institution> getInstitutions() {
         return institutionRepository.findAll();
 
     }

@@ -22,19 +22,21 @@ public class HomeController {
     private final EmailService emailService;
 
     public HomeController(InstitutionRepository institutionRepository, DonationRepository donationRepository, EmailService emailService) {
-    this.institutionRepository = institutionRepository;
-    this.donationRepository = donationRepository;
-    this.emailService = emailService;
+        this.institutionRepository = institutionRepository;
+        this.donationRepository = donationRepository;
+        this.emailService = emailService;
     }
 
     @RequestMapping("/")
-    public String homeAction(Model model){
+    public String homeAction(Model model) {
         List<Institution> institutionList = institutionRepository.findAll();
         Long numberOfDonation = donationRepository.count();
         Integer numberOfBag = donationRepository.SumOfBag();
-        if(numberOfBag == null){
+
+        if (numberOfBag == null) {
             numberOfBag = 0;
         }
+
         model.addAttribute("institutionList", institutionList);
         model.addAttribute("numberOfDonation", numberOfDonation);
         model.addAttribute("numberOfBag", numberOfBag);
@@ -43,9 +45,9 @@ public class HomeController {
     }
 
     @PostMapping("/sendEmail")
-    public String sendEmail(@Param("message") String message, @Param("name") String name, @Param("surname") String surname){
+    public String sendEmail(@Param("message") String message, @Param("name") String name, @Param("surname") String surname) {
 
-        emailService.makeMessage("Wiadomość z formularza (Charity)", message, name, surname );
+        emailService.makeMessage("Wiadomość z formularza (Charity)", message, name, surname);
 
         return "redirect:/";
     }

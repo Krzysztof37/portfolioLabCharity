@@ -20,21 +20,21 @@ public class UserController {
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserController(UserRepository userRepository, UserService userService, BCryptPasswordEncoder passwordEncoder) {
-    this.userRepository = userRepository;
-    this.userService = userService;
-    this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+        this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/add/user")
-    public String addUser(Model model){
+    public String addUser(Model model) {
         model.addAttribute("user", new User());
         return "addUserForm";
     }
 
     @PostMapping("/add/user")
-    public String addUserPost(@Valid User user, BindingResult result){
+    public String addUserPost(@Valid User user, BindingResult result) {
 
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "addUserForm";
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "loginForm";
     }
 

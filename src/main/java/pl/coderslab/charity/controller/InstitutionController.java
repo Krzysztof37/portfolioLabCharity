@@ -25,13 +25,13 @@ public class InstitutionController {
     private final InstitutionService institutionService;
 
     public InstitutionController(InstitutionRepository institutionRepository, InstitutionService institutionService) {
-    this.institutionRepository = institutionRepository;
+        this.institutionRepository = institutionRepository;
         this.institutionService = institutionService;
     }
 
 
     @GetMapping("/institution/list")
-    public String getInstitutionsList(Model model, HttpServletRequest request, Pageable pageable){
+    public String getInstitutionsList(Model model, HttpServletRequest request, Pageable pageable) {
 
         Page<Institution> institutionList = institutionRepository.findAll(pageable);
 
@@ -41,15 +41,15 @@ public class InstitutionController {
     }
 
     @GetMapping("/institution/delete/{id}")
-    public String deleteInstitution(@PathVariable Long id){
+    public String deleteInstitution(@PathVariable Long id) {
         institutionRepository.deleteById(id);
         return "redirect:/institution/list";
     }
 
     @PostMapping("/institution/add")
-    public String institutionAdd(@Valid Institution institution, BindingResult result, Model model){
+    public String institutionAdd(@Valid Institution institution, BindingResult result, Model model) {
 
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             model.addAttribute("errorsInstitution", result.getFieldErrors().stream().map(e -> e.getDefaultMessage()).collect(Collectors.toList()));
             return "institutionsList";
         }

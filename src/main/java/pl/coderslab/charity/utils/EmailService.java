@@ -15,17 +15,15 @@ public class EmailService {
     private MailSender emailSender;
 
 
-    public SimpleMailMessage makeMessage(String subject, String text, String name, String surname){
+    public SimpleMailMessage makeMessage(String subject, String text, String name, String surname) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@gmail.com");
         message.setTo("krzysztofjez37@tlen.pl");
         message.setSubject(subject);
-        message.setText(text+"\n"+name+" "+surname);
+        message.setText(text + "\n" + name + " " + surname);
         emailSender.send(message);
 
         return message;
     }
-
 
 
 }

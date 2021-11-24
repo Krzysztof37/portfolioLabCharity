@@ -14,10 +14,9 @@ public class InstitutionService {
         this.institutionRepository = institutionRepository;
     }
 
-    public Iterable<Institution> allInstitutions(){
+    public Iterable<Institution> allInstitutions() {
         return institutionRepository.findAll();
     }
-
 
 
 }
