@@ -1,4 +1,4 @@
-<img alt="Logo" src="http://coderslab.pl/svg/logo-coderslab.svg" width="400">
+
 
 Aplikacja służy do przekazywania darów dla fundacji. Posiada funkcje rejestracji oraz logowania.
 Zastosowane technologie: Java, SpringBoot, Spring Security, Hibernate, Spring Data.
