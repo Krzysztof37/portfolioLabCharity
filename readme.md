@@ -1,5 +1,3 @@
-
-
 Aplikacja służy do przekazywania darów dla fundacji. Posiada funkcje rejestracji oraz logowania.
 Zastosowane technologie: Java, SpringBoot, Spring Security, Hibernate, Spring Data.
 Wykorzystana baza danych: mySQL.
