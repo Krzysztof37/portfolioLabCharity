@@ -1,6 +1,6 @@
 
 The application is used to donate to the foundation. It has the following functions: registration, login, gift transfer, administrator control panel and contact form.
-Technologies: Java, Spring Boot, Spring Security, Hibernate, Spring Data
+Technologies: Java, Spring Boot, Spring Security, Hibernate, Spring Data.
 DB: mySQL
 
 
